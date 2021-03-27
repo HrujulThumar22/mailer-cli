@@ -1,0 +1,27 @@
+{
+  "name": "mailer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "bin/index.js",
+  "bin": {
+    "mailer": "bin/index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "boxen": "^5.0.0",
+    "chalk": "^4.1.0",
+    "commander": "^7.2.0",
+    "email-validator": "^2.0.4",
+    "inquirer": "^8.0.0",
+    "nodemailer": "^6.5.0",
+    "open": "^8.0.4",
+    "ora": "^5.4.0",
+    "terminal-link": "^2.1.1",
+    "wide-align": "^1.1.3"
+  }
+}
