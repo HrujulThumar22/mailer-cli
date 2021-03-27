@@ -20,7 +20,7 @@ program.version(
 
 
 program
-  .option('-i,--init',"Initialise with your email")
+  .option('-i, --init',"Initialise with your email")
   .option('-s, --send',"To send the email after entering the details");
 
 
