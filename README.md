@@ -18,12 +18,12 @@ Check Installtiong by running
 
 ```bash
 $ mailer --version
-![Version](/images/version.png)
 ```
+
+![Version](/images/version.png)
 
 # Usage
 
-:man-technologist
 To use this
 
 ```bash
