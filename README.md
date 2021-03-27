@@ -34,7 +34,7 @@ or
 $ mailer -h
 ```
 
-![Version](/images/help.png)
+![Help](/images/help.png)
 
 ---
 
@@ -43,3 +43,5 @@ To initialise:
 ```bash
 $ mailer -i
 ```
+
+![Init](/images/init.gif)
