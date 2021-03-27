@@ -14,10 +14,12 @@ $ cd mailer-cli/
 $ npm install -g
 ```
 
-Check Installtiong by running
+Check Installation by running
 
 ```bash
 $ mailer --version
+or
+$ mailer -v
 ```
 
 ![Version](/images/version.png)
@@ -28,7 +30,11 @@ To use this
 
 ```bash
 $ mailer --help
+or
+$ mailer -h
 ```
+
+![Version](/images/help.png)
 
 ---
 
