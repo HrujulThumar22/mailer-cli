@@ -38,10 +38,26 @@ $ mailer -h
 
 ---
 
-To initialise:
+## Initialise the Mailer
 
 ```bash
-$ mailer -i
+$ mailer inti
+or
+$ mailer i
 ```
 
 ![Init](/images/init.gif)
+
+---
+
+## Sending Mail
+
+To Get the available options
+
+```bash
+$ mailer send --help
+or
+$ mailer send -h
+```
+
+![Init](/images/sendHelp.png)
