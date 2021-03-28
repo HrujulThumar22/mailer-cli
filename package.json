@@ -1,5 +1,5 @@
 {
-  "name": "mailer",
+  "name": "mailer-cli",
   "version": "1.0.0",
   "description": "",
   "main": "bin/index.js",
@@ -17,6 +17,8 @@
     "chalk": "^4.1.0",
     "commander": "^7.2.0",
     "email-validator": "^2.0.4",
+    "esm": "^3.2.25",
+    "fs": "0.0.1-security",
     "inquirer": "^8.0.0",
     "nodemailer": "^6.5.0",
     "open": "^8.0.4",
