@@ -60,4 +60,4 @@ or
 $ mailer send -h
 ```
 
-![Init](/images/sendHelp.png)
+![send Help](/images/sendHelp.png)
