@@ -215,7 +215,7 @@ program
             transporter.sendMail(mailOptions, function(error, info){
               if (error) {
                 spinner.fail('unable to send the Mail');
-                console.log(chalk.red(error.response));
+                console.log(chalk.red(error));
                 console.log(chalk.green.bold(' Try reinitialising the Mailer')+' by typing '+chalk.hex('#0069b9').bold('mailer init')+' Command');
                 process.exit(1);
               } else {
