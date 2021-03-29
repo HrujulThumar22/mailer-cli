@@ -38,7 +38,7 @@ program
   .description('Send Mail with multiple options')
   .option('-a, --attachment',"To send the email with attachment")
   .option('-cc, --carbonCopy',"To send the email with a CC Field")
-  .option('-bcc, --blankCarbonCopy',"To send email with a BCC field")
+  .option('-bcc, --blindCarbonCopy',"To send email with a BCC field")
   .action(async (options) => {
     try {
       const details=(JSON.parse(fs.readFileSync('F:/mailer-cli/bin/data/details.JSON')));
@@ -131,7 +131,7 @@ program
         });
       }
 
-      if(options.blankCarbonCopy)
+      if(options.blindCarbonCopy)
       {
         questions.push({
           type:'input',
@@ -180,7 +180,7 @@ program
         mailOptions['subject']=`${answers['subject']}`;
         mailOptions['text']=`${answers['text']}`;
         if(options.carbonCopy) mailOptions['cc']=`${answers['cc']}`;
-        if(options.blankCarbonCopy) mailOptions['bcc']=`${answers['bcc']}`;
+        if(options.blindCarbonCopy) mailOptions['bcc']=`${answers['bcc']}`;
         if(options.attachment) mailOptions['attachments']=[{'path':`${answers['file']}`}];
       });
       var spinner=ora('Creating Your Mail').start();
