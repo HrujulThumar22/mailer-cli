@@ -61,3 +61,21 @@ $ mailer send -h
 ```
 
 ![send Help](/images/sendhelp.png)
+
+### Various Options of sending Mail
+
+Mail can be send with a combination of any of the following options:
+
+- With Attachment
+
+```bash
+$ mailer send -a
+or
+$ mailer send --attachment
+```
+
+![attachment img](/images/attachment.png)
+Eg:-
+![attachment GIF](/images/attachment.gif)
+
+- With CC
