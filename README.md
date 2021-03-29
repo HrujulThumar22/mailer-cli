@@ -2,6 +2,13 @@
 
 A command line interface to send mail without any hassle.
 
+### Usage Instructions
+
+- Install the CLI
+- Give Permission to acces your Gmail Account ([Google Permission](https://myaccount.google.com/lesssecureapps?pli=1&rapt=AEjHL4Od6qJ0Xaz4XjAsWRINufSaxSeH4s4WT-oIsp4r0NUvlGhnUgDwBkcAdLLuTQ7Hwpcvm7Gpi8h4wv9ZPnZq1BaJtduyDA))
+- Initialise the Mailer
+- Send Mail, without any Hassel.
+
 # Installation
 
 Manually Install mailer from this package
@@ -26,7 +33,7 @@ $ mailer -v
 
 # Usage
 
-To use this
+To See the Various Options
 
 ```bash
 $ mailer --help
@@ -47,7 +54,7 @@ $ mailer i
 ```
 
 ![Init](/images/init.png)
-Eg:-
+Eg:-  
 ![Init](/images/init.gif)
 
 ---
@@ -77,7 +84,7 @@ $ mailer send --attachment
 ```
 
 ![attachment img](/images/attachment.png)
-Eg:-
+Eg:-  
 ![attachment GIF](/images/attachment.gif)
 
 - With CC
@@ -89,7 +96,7 @@ $ mailer send --carbonCopy
 ```
 
 ![attachment img](/images/cc.png)
-Eg:-
+Eg:-  
 ![attachment GIF](/images/cc.gif)
 
 - With BCC
@@ -101,5 +108,5 @@ $ mailer send --blindCarbonCopy
 ```
 
 ![attachment img](/images/bcc.png)
-Eg:-
+Eg:-  
 ![attachment GIF](/images/bcc.gif)
