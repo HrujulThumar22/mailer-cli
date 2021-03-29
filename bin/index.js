@@ -66,7 +66,7 @@ program
           
           if(!valid)
           {
-            console.log(chalk.red.bold(' Kindly enter valid Password')); 
+            console.log(chalk.red.bold(' Kindly enter valid Email')); 
             return false;
           }
           else return true;
@@ -82,33 +82,100 @@ program
           var valid=/^[\w]/.test(subject);
           if(!valid)
           {
-            console.log(chalk.red.bold(' Kindly enter valid Password')); 
+            console.log(chalk.red.bold(' Kindly enter valid Subject')); 
             return false;
           }
           else return true;
         }
       },
       {
-        type:'input',
+        type:'editor',
         name:'text',
-        message:'Type the text',
+        message:'Type the text in the editor and save it\n',
         validate:function(text)
         {
           // Regex mail check (return true if valid mail)
           var valid=/^[\w]/.test(text);
           if(!valid)
           {
-            console.log(chalk.red.bold(' Kindly enter valid Password')); 
+            console.log(chalk.red.bold(' Kindly enter valid Text')); 
             return false;
           }
           else return true;
         }
       }
       ];
+
+      if(options.carbonCopy)
+      {
+        questions.push({
+          type:'input',
+          name:'cc',
+          message:'Enter CC email Address',
+          validate: function(email)
+          {
+            // Regex mail check (return true if valid mail)
+            var valid=/^[\w.+\-]+@gmail\.com$/.test(email);
+            
+            if(!valid)
+            {
+              console.log(chalk.red.bold(' Kindly enter valid Password')); 
+              return false;
+            }
+            else return true;
+          }
+        });
+      }
+
+      if(options.blankCarbonCopy)
+      {
+        questions.push({
+          type:'input',
+          name:'bcc',
+          message:'Enter BCC email Address',
+          validate: function(email)
+          {
+            // Regex mail check (return true if valid mail)
+            var valid=/^[\w.+\-]+@gmail\.com$/.test(email);
+            
+            if(!valid)
+            {
+              console.log(chalk.red.bold(' Kindly enter valid Password')); 
+              return false;
+            }
+            else return true;
+          }
+        });
+      }
+
+      if(options.attachment)
+      {
+        questions.push({
+          type:'input',
+          name:'file',
+          message:'Enter Path/link for file Attachment',
+          validate: function(email)
+          {
+            // Regex mail check (return true if valid mail)
+            var valid=true;
+            
+            if(!valid)
+            {
+              console.log(chalk.red.bold(' Kindly enter valid Path')); 
+              return false;
+            }
+            else return true;
+          }
+        });
+      }
+
         await inquirer.prompt(questions).then(answers=>{
         mailOptions['to']=`${answers['email']}`;
         mailOptions['subject']=`${answers['subject']}`;
         mailOptions['text']=`${answers['text']}`;
+        if(options.carbonCopy) mailOptions['cc']=`${answers['cc']}`;
+        if(options.blankCarbonCopy) mailOptions['bcc']=`${answers['bcc']}`;
+        if(options.attachment) mailOptions['attachments']=[{'path':`${answers['file']}`}];
       });
       console.log(mailOptions);
       const spinner=ora('Loading').start();
