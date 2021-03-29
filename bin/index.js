@@ -62,7 +62,7 @@ program
         validate: function(email)
         {
           // Regex mail check (return true if valid mail)
-          var valid=/^[\w.+\-]+@gmail\.com$/.test(email);
+          var valid=/^[A-Za-z0-9_.-]+@[A-Za-z0-9-.]+[A-Za-z0-9-]\.[A-Za-z]+/.test(email);
           
           if(!valid)
           {
@@ -115,11 +115,11 @@ program
           validate: function(email)
           {
             // Regex mail check (return true if valid mail)
-            var valid=/^[\w.+\-]+@gmail\.com$/.test(email);
+            var valid=/^[A-Za-z0-9_.-]+@[A-Za-z0-9-.]+[A-Za-z0-9-]\.[A-Za-z]+/.test(email);
             
             if(!valid)
             {
-              console.log(chalk.red.bold(' Kindly enter valid Password')); 
+              console.log(chalk.red.bold(' Kindly enter valid CC Email')); 
               return false;
             }
             else return true;
@@ -136,11 +136,11 @@ program
           validate: function(email)
           {
             // Regex mail check (return true if valid mail)
-            var valid=/^[\w.+\-]+@gmail\.com$/.test(email);
+            var valid=/^[A-Za-z0-9_.-]+@[A-Za-z0-9-.]+[A-Za-z0-9-]\.[A-Za-z]+/.test(email);
             
             if(!valid)
             {
-              console.log(chalk.red.bold(' Kindly enter valid Password')); 
+              console.log(chalk.red.bold(' Kindly enter valid BCC Email')); 
               return false;
             }
             else return true;
@@ -177,19 +177,58 @@ program
         if(options.blankCarbonCopy) mailOptions['bcc']=`${answers['bcc']}`;
         if(options.attachment) mailOptions['attachments']=[{'path':`${answers['file']}`}];
       });
-      console.log(mailOptions);
-      const spinner=ora('Loading').start();
-      transporter.sendMail(mailOptions, function(error, info){
-        if (error) {
-          spinner.fail('unable to send the Mail');
-          console.log(chalk.red(error.response));
-          console.log(chalk.green.bold(' Try reinitialising the Mailer')+' by typing '+chalk.hex('#0069b9').bold('mailer init')+' Command');
-          process.exit(1);
-        } else {
-          spinner.succeed('Mail Sent');
-          console.log('Email sent: ' + info.response);
+      var spinner=ora('Creating Your Mail').start();
+      setTimeout(()=>{
+        spinner.succeed("Mail Created");
+        const boxenOptions = {
+          padding: 1,
+          borderStyle: "round",
+          borderColor: "green",
+          backgroundColor: "#444",
+          float:"center"
+        };
+        var optString=chalk.green.bold('Your Mail Details\n');
+        for(var key in mailOptions){
+          if (mailOptions.hasOwnProperty(key)) {
+            var val = mailOptions[key];
+            optString+=chalk.hex('#0069b9').bold(`${key} : `)+ chalk.red(`${val}\n`);
+          }
         }
-      }); 
+        const mailBox = boxen( optString, boxenOptions );
+        console.log(align.center(mailBox));
+      },5000);
+      
+      const confirmQuestion=[{
+        type:'list',
+        message:'Send this Mail?',
+        name:'confirm',
+        choices:['Yes','No']
+      }];
+      await inquirer.prompt(confirmQuestion).then(answers => {
+        if(`${answers['confirm']}`=="Yes"){
+          spinner=ora('Sending your mail').start();
+          setTimeout(()=>{
+            transporter.sendMail(mailOptions, function(error, info){
+              if (error) {
+                spinner.fail('unable to send the Mail');
+                console.log(chalk.red(error.response));
+                console.log(chalk.green.bold(' Try reinitialising the Mailer')+' by typing '+chalk.hex('#0069b9').bold('mailer init')+' Command');
+                process.exit(1);
+              } else {
+                spinner.succeed('Mail Sent');
+                console.log('Email sent: ' + info.response);
+              }
+            });
+          },5000);
+        const boxenOptions = {
+          padding: 1,
+          borderStyle: "round",
+          borderColor: "green",
+          backgroundColor: "#444",
+          float:"center"
+        };
+      }
+      }) 
     } catch (error) {
       spinner.stop();
       console.log(error)
