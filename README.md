@@ -46,6 +46,8 @@ or
 $ mailer i
 ```
 
+![Init](/images/init.png)
+Eg:-
 ![Init](/images/init.gif)
 
 ---
@@ -79,3 +81,25 @@ Eg:-
 ![attachment GIF](/images/attachment.gif)
 
 - With CC
+
+```bash
+$ mailer send -cc
+or
+$ mailer send --carbonCopy
+```
+
+![attachment img](/images/cc.png)
+Eg:-
+![attachment GIF](/images/cc.gif)
+
+- With BCC
+
+```bash
+$ mailer send -bcc
+or
+$ mailer send --blindCarbonCopy
+```
+
+![attachment img](/images/bcc.png)
+Eg:-
+![attachment GIF](/images/bcc.gif)
