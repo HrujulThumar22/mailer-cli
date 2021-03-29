@@ -58,7 +58,8 @@ program
       var questions=[{
         type: 'input',
         name: 'email',
-        message: "Type the receivers Email",
+        prefix: chalk.green('@'),
+        message: "Type the receivers Email : ",
         validate: function(email)
         {
           // Regex mail check (return true if valid mail)
@@ -75,7 +76,8 @@ program
       {
         type:'input',
         name:'subject',
-        message:'Type the Subject',
+        prefix: chalk.green('>'),
+        message:'Type the Subject : ',
         validate:function(subject)
         {
           // Regex mail check (return true if valid mail)
@@ -91,7 +93,8 @@ program
       {
         type:'editor',
         name:'text',
-        message:'Type the text in the editor and save it\n',
+        prefix: chalk.green('>>'),
+        message:'Type the text in the editor and save it : \n',
         validate:function(text)
         {
           // Regex mail check (return true if valid mail)
@@ -111,7 +114,8 @@ program
         questions.push({
           type:'input',
           name:'cc',
-          message:'Enter CC email Address',
+          prefix: chalk.green('@'),
+          message:'Enter CC email Address : ',
           validate: function(email)
           {
             // Regex mail check (return true if valid mail)
@@ -132,7 +136,8 @@ program
         questions.push({
           type:'input',
           name:'bcc',
-          message:'Enter BCC email Address',
+          prefix: chalk.green('@'),
+          message:'Enter BCC email Address : ',
           validate: function(email)
           {
             // Regex mail check (return true if valid mail)
@@ -153,7 +158,8 @@ program
         questions.push({
           type:'input',
           name:'file',
-          message:'Enter Path/link for file Attachment',
+          prefix: chalk.green('$'),
+          message:'Enter Path/link for file Attachment : ',
           validate: function(email)
           {
             // Regex mail check (return true if valid mail)
@@ -187,24 +193,22 @@ program
           backgroundColor: "#444",
           float:"center"
         };
-        var optString=chalk.green.bold('Your Mail Details\n');
-        for(var key in mailOptions){
-          if (mailOptions.hasOwnProperty(key)) {
-            var val = mailOptions[key];
-            optString+=chalk.hex('#0069b9').bold(`${key} : `)+ chalk.red(`${val}\n`);
-          }
+      var optString=chalk.green.bold('Your Mail Details\n');
+      for(var key in mailOptions){
+        if (mailOptions.hasOwnProperty(key)) {
+          var val = mailOptions[key];
+          optString+=chalk.hex('#0069b9').bold(`${key} : `)+ chalk.red(`${val}\n`);
         }
-        const mailBox = boxen( optString, boxenOptions );
-        console.log(align.center(mailBox));
-      },5000);
-      
+      }
+      const mailBox = boxen( optString, boxenOptions );
+      console.log(align.center(mailBox));
       const confirmQuestion=[{
         type:'list',
         message:'Send this Mail?',
         name:'confirm',
         choices:['Yes','No']
       }];
-      await inquirer.prompt(confirmQuestion).then(answers => {
+      inquirer.prompt(confirmQuestion).then(answers => {
         if(`${answers['confirm']}`=="Yes"){
           spinner=ora('Sending your mail').start();
           setTimeout(()=>{
@@ -217,18 +221,17 @@ program
               } else {
                 spinner.succeed('Mail Sent');
                 console.log('Email sent: ' + info.response);
+                process.exit(1);
               }
             });
           },5000);
-        const boxenOptions = {
-          padding: 1,
-          borderStyle: "round",
-          borderColor: "green",
-          backgroundColor: "#444",
-          float:"center"
-        };
       }
-      }) 
+      else{
+        spinner.warn('Not Sending the Mail');
+        process.exit(1);
+      }
+      })
+    },5000); 
     } catch (error) {
       spinner.stop();
       console.log(error)
