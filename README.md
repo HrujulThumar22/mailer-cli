@@ -110,3 +110,11 @@ $ mailer send --blindCarbonCopy
 ![attachment img](/images/bcc.png)
 Eg:-  
 ![attachment GIF](/images/bcc.gif)
+
+# Future Release :
+
+Coming up with a CLI having **OAuth Authentication** rather than **allowing Less Secure Apps**.
+
+# Bugs :
+
+Feel Free to open an Issue.
