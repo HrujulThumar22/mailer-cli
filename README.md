@@ -48,7 +48,7 @@ $ mailer -h
 ## Initialise the Mailer
 
 ```bash
-$ mailer inti
+$ mailer init
 or
 $ mailer i
 ```
